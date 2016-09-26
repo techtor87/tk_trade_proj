@@ -18,6 +18,7 @@ import oauth2 as oauth
 import time
 
 from tk_functions import *
+from spreadsheet_functions import *
 
 commision_flat_rate = 4.95
 commision_per_contract = 0.65
@@ -32,6 +33,7 @@ stock_list = [ 'AAPL',
                'CRM' ]
 
 def main():
+    setup_columns( "test.xls" )
 
     tk_func = TK_functions()
     tk_func.refresh_account_data()
