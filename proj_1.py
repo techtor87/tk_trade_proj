@@ -23,6 +23,9 @@ from spreadsheet_functions import *
 commision_flat_rate = 4.95
 commision_per_contract = 0.65
 
+outer_repeat_time = 120.0
+inner_repeat_time = 20.0
+
 stock_list = [ 'AAPL',
                'BP',
                'CBI',
@@ -46,22 +49,31 @@ def main():
 
     trade_workbook.save("data_dump.xls")
 
+    # start_time=time.time()
+    # while True:
+
     tk_func.refresh_account_data()
 
     for stock in stock_list:
         tk_func.get_quote(stock)
         tk_func.get_search(stock)
 
-        # fill_row ( trade_workbook.worksheet[stock],
-                   # tk_func.search[stock],
-                   # tk_func.quote.bid,
-                   # tk_func.quote.ask )
+        fill_row ( trade_workbook[stock],
+                tk_func.search[stock],
+                tk_func.quote.bid,
+                tk_func.quote.ask )
 
         # find_profitable_trades( trade_sheet,
                                 # trade_workbook.worksheet[stock],
                                 # tk_func.search[stock],
                                 # tk_func.quote.bid,
                                 # tk_func.quote.ask )
+
+        print( 'done {} - {}'.format(stock, time.time()))
+            # time.sleep(inner_repeat_time - ((time.time() - start_time) % inner_repeat_time))
+
+        # trade_workbook.save("data_dump.xls")
+        # time.sleep(outer_repeat_time - ((time.time() - start_time) % outer_repeat_time))
 
     trade_workbook.save("data_dump.xls")
 

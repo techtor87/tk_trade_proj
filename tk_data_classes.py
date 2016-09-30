@@ -27,7 +27,7 @@ class Account():
        self.totalsecurities = None
 
     def to_s(self):
-       ret_str = "account_num = " + self.account_num + "\n"
+       ret_str  = "account_num = " + self.account_num + "\n"
        ret_str += "accountval = " + self.accountval + "\n"
        ret_str += "fedcall = " + str(self.fedcall) + "\n"
        ret_str += "housecall = " + str(self.housecall) + "\n"
