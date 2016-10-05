@@ -29,12 +29,12 @@ outer_repeat_time = 120.0
 inner_repeat_time = 20.0
 
 stock_list = [ 'AAPL',
-               'BP',
-               'CBI',
-               'DE',
-               'M',
-               'MSFT',
-               'PG',
+               # 'BP',
+               # 'CBI',
+               # 'DE',
+               # 'M',
+               # 'MSFT',
+               # 'PG',
                'CRM' ]
 
 def main():
@@ -76,8 +76,14 @@ def main():
                                 # tk_func.quote.bid,
                                 # tk_func.quote.ask )
 
-        add_quote(cur, stock, tk_func, 0, 0)
+        add_quote(cur,
+                  stock,
+                  tk_func.search.search_quote,
+                  tk_func.quote.bid,
+                  tk_func.quote.ask)
 
+        sql_text = "SELECT * FROM " + stock
+        cur.execute(sql_text)
         rows = cur.fetchall()
 
         for row in rows:
@@ -89,6 +95,12 @@ def main():
         # trade_workbook.save("data_dump.xls")
         # time.sleep(outer_repeat_time - ((time.time() - start_time) % outer_repeat_time))
 
+    sql_text = "SELECT * FROM trades"
+    cur.execute(sql_text)
+    rows = cur.fetchall()
+
+    for row in rows:
+        print row
     trade_workbook.save("data_dump.xls")
 
 if __name__ == '__main__':
