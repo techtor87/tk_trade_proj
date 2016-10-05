@@ -40,16 +40,10 @@ stock_list = [ 'AAPL',
 def main():
     tk_func = TK_functions()
 
-    con = lite.connect('test.db')
+    con = lite.connect('trade_test.db')
     with con:
         cur = con.cursor()
         setup_tables(cur, stock_list )
-        cur.execute("SELECT * FROM Cars")
-        rows = cur.fetchall()
-
-        for row in rows:
-            print row
-
 
     # initialize workbook
     trade_workbook = pyxl.Workbook()
@@ -81,6 +75,13 @@ def main():
                                 # tk_func.search[stock],
                                 # tk_func.quote.bid,
                                 # tk_func.quote.ask )
+
+        add_quote(cur, stock, tk_func, 0, 0)
+
+        rows = cur.fetchall()
+
+        for row in rows:
+            print row
 
         print( 'done {} - {}'.format(stock, time.time()))
             # time.sleep(inner_repeat_time - ((time.time() - start_time) % inner_repeat_time))
