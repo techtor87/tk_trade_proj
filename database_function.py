@@ -79,3 +79,6 @@ def add_trade( cur, _bid, _ask, _type, _profit, _option1, _option2, _option3, _o
     sql_test += str(_option4) + ")"
     print sql_test
     cur.execute(sql_text)
+
+def find_profitable_trades(cur, _data, _bid, _ask):
+    return

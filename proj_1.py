@@ -46,15 +46,15 @@ def main():
         setup_tables(cur, stock_list )
 
     # initialize workbook
-    trade_workbook = pyxl.Workbook()
-    trade_sheet = trade_workbook.active
-    trade_sheet.title = "Trade List"
-    setup_trade_columns( trade_sheet )
-    for stock in stock_list:
-        stock_sheet = trade_workbook.create_sheet(stock)
-        setup_columns(stock_sheet)
+    # trade_workbook = pyxl.Workbook()
+    # trade_sheet = trade_workbook.active
+    # trade_sheet.title = "Trade List"
+    # setup_trade_columns( trade_sheet )
+    # for stock in stock_list:
+    #     stock_sheet = trade_workbook.create_sheet(stock)
+    #     setup_columns(stock_sheet)
 
-    trade_workbook.save("data_dump.xls")
+    # trade_workbook.save("data_dump.xls")
 
     # start_time=time.time()
     # while True:
@@ -66,7 +66,7 @@ def main():
         tk_func.get_search(stock)
 
         # fill_row ( trade_workbook[stock],
-        #         tk_func.search[stock],
+        #         tk_func.search.search_quote,
         #         tk_func.quote.bid,
         #         tk_func.quote.ask )
 
@@ -82,12 +82,12 @@ def main():
                   tk_func.quote.bid,
                   tk_func.quote.ask)
 
-        sql_text = "SELECT * FROM " + stock
-        cur.execute(sql_text)
-        rows = cur.fetchall()
+        # sql_text = "SELECT * FROM " + stock
+        # cur.execute(sql_text)
+        # rows = cur.fetchall()
 
-        for row in rows:
-            print row
+        # for row in rows:
+        #     print row
 
         print( 'done {} - {}'.format(stock, time.time()))
             # time.sleep(inner_repeat_time - ((time.time() - start_time) % inner_repeat_time))
@@ -95,13 +95,13 @@ def main():
         # trade_workbook.save("data_dump.xls")
         # time.sleep(outer_repeat_time - ((time.time() - start_time) % outer_repeat_time))
 
-    sql_text = "SELECT * FROM trades"
-    cur.execute(sql_text)
-    rows = cur.fetchall()
+    # sql_text = "SELECT * FROM trades"
+    # cur.execute(sql_text)
+    # rows = cur.fetchall()
 
-    for row in rows:
-        print row
-    trade_workbook.save("data_dump.xls")
+    # for row in rows:
+    #     print row
+    # trade_workbook.save("data_dump.xls")
 
 if __name__ == '__main__':
     main()
