@@ -17,6 +17,8 @@ import sys
 import oauth2 as oauth
 import time
 
+import sqlite3 as lite
+from database_function import *
 from tk_functions import *
 from spreadsheet_functions import *
 
@@ -38,6 +40,17 @@ stock_list = [ 'AAPL',
 def main():
     tk_func = TK_functions()
 
+    con = lite.connect('test.db')
+    with con:
+        cur = con.cursor()
+        setup_tables(cur, stock_list )
+        cur.execute("SELECT * FROM Cars")
+        rows = cur.fetchall()
+
+        for row in rows:
+            print row
+
+
     # initialize workbook
     trade_workbook = pyxl.Workbook()
     trade_sheet = trade_workbook.active
@@ -58,10 +71,10 @@ def main():
         tk_func.get_quote(stock)
         tk_func.get_search(stock)
 
-        fill_row ( trade_workbook[stock],
-                tk_func.search[stock],
-                tk_func.quote.bid,
-                tk_func.quote.ask )
+        # fill_row ( trade_workbook[stock],
+        #         tk_func.search[stock],
+        #         tk_func.quote.bid,
+        #         tk_func.quote.ask )
 
         # find_profitable_trades( trade_sheet,
                                 # trade_workbook.worksheet[stock],
