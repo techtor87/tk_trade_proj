@@ -80,5 +80,9 @@ def add_trade( cur, _bid, _ask, _type, _profit, _option1, _option2, _option3, _o
     print sql_test
     cur.execute(sql_text)
 
-def find_profitable_trades(cur, _data, _bid, _ask):
-    return
+def find_profitable_trades( _cur, _data, _bid, _ask):
+    covered_call( _cur, _data, _bid, _ask )
+    iron_condor(  _cur, _data, _bid, _ask )
+    long_box(  _cur, _data, _bid, _ask )
+    short_box(  _cur, _data, _bid, _ask )
+

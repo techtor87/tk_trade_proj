@@ -20,4 +20,29 @@ def long_box_profit( _low_strike_call, _high_strike_call, _low_strike_put, _high
 def short_box_profit( _low_strike_call, _high_strike_call, _low_strike_put, _high_strike_put):
     return 0
 
+def covered_call( _cur, _stock, _data, _bid, _ask ):
+    return
 
+def iron_condor( _cur, _stock, _data, _bid, _ask ):
+    return
+
+def long_box( _cur, _stock, _data, _bid, _ask ):
+    return
+
+def short_box( _cur, _stock, _data, _bid, _ask ):
+    sql_text = "SELECT * FROM " + _stock + " WHERE put_call='put' ORDER BY xdate, strike_price LIMIT 20"
+    _cur.execute(sql_text)
+    data_rows_put = _cur.fetchall()
+
+    sql_text = "SELECT * FROM " + _stock + " WHERE put_call='call' ORDER BY xdate, strike_price"
+    _cur.execute(sql_text)
+    data_rows_call = _cur.fetchall()
+
+    for low_strike_p in data_rows_put:
+        for hi_strike_p in data_rows_put:
+            for low_strike_c in data_rows_call:
+                for hi_strike_c in data_rows_call:
+                    # if low_strike_c
+                    break
+
+    return

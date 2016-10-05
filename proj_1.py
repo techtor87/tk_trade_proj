@@ -70,25 +70,28 @@ def main():
         #         tk_func.quote.bid,
         #         tk_func.quote.ask )
 
-        # find_profitable_trades( trade_sheet,
-                                # trade_workbook.worksheet[stock],
-                                # tk_func.search[stock],
-                                # tk_func.quote.bid,
-                                # tk_func.quote.ask )
-
         add_quote(cur,
                   stock,
                   tk_func.search.search_quote,
                   tk_func.quote.bid,
                   tk_func.quote.ask)
 
-        # sql_text = "SELECT * FROM " + stock
-        # cur.execute(sql_text)
-        # rows = cur.fetchall()
+        find_profitable_trades( cur,
+                                stock,
+                                tk_func.search.search_quote,
+                                tk_func.quote.bid,
+                                tk_func.quote.ask )
 
-        # for row in rows:
-        #     print row
 
+        sql_text = "SELECT * FROM " + stock
+        sql_text += " LIMIT 10"
+        cur.execute(sql_text)
+        rows = cur.fetchall()
+
+        for row in rows:
+            print row
+
+        con.commit()
         print( 'done {} - {}'.format(stock, time.time()))
             # time.sleep(inner_repeat_time - ((time.time() - start_time) % inner_repeat_time))
 
