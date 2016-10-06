@@ -24,6 +24,7 @@ from spreadsheet_functions import *
 
 commision_flat_rate = 4.95
 commision_per_contract = 0.65
+required_success_percentage = 0.75
 
 outer_repeat_time = 120.0
 inner_repeat_time = 20.0

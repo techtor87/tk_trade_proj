@@ -26,15 +26,15 @@ data_store = Spreadsheet::Workbook.new
 $commision_flat_rate=4.95
 $commision_per_contract=0.65
 stock_array = [ "CSCO",
-                "GE",
-                "AAPL",
-                "BP",
-                "CBI",
-                "DE",
-                "M",
-                "MSFT",
-                "PG",
-                "CRM",
+                # "GE",
+                # "AAPL",
+                # "BP",
+                # "CBI",
+                # "DE",
+                # "M",
+                # "MSFT",
+                # "PG",
+                # "CRM",
                 "SPY"]
 
 # initialize each worksheet
