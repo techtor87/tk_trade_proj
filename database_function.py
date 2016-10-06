@@ -7,38 +7,39 @@ from tk_functions import *
 from trading_stratigies import *
 
 def setup_tables( cur , stock_list):
+
     sql_text  = "CREATE TABLE IF NOT EXISTS trades( "
-    sql_text += " trade_type TEXT, "
-    sql_text += " bid REAL, "
-    sql_text += " ask REAL, "
-    sql_text += " trade_profit REAL, "
-    sql_text += " trade_1 BLOB, "
-    sql_text += " trade_2 BLOB, "
-    sql_text += " trade_3 BLOB, "
-    sql_text += " trade_4 BLOB "
+    sql_text += " trade_type TEXT, "            # trades[0] = trade_type
+    sql_text += " bid REAL, "                   # trades[1] = bid
+    sql_text += " ask REAL, "                   # trades[2] = ask
+    sql_text += " trade_profit REAL, "          # trades[3] = trade_profit
+    sql_text += " trade_1 BLOB, "               # trades[4] = trade_1
+    sql_text += " trade_2 BLOB, "               # trades[5] = trade_2
+    sql_text += " trade_3 BLOB, "               # trades[6] = trade_3
+    sql_text += " trade_4 BLOB "                # trades[7] = trade_4
     sql_text += ")"
     cur.execute(sql_text)
 
     for stock in stock_list:
         sql_text  = "CREATE TABLE IF NOT EXISTS "
         sql_text += stock
-        sql_text += "( cur_bid REAL, "
-        sql_text += "cur_ask REAL, "
-        sql_text += "strike_price REAL, "
-        sql_text += "xdate REAL, "
-        sql_text += "days_to_expir REAL, "
-        sql_text += "bid REAL, "
-        sql_text += "ask REAL, "
-        sql_text += "contract_size INT, "
-        sql_text += "put_call TEXT, "
-        sql_text += "symbol TEXT, "
-        sql_text += "imp_vol TEXT, "
-        sql_text += "delta REAL, "
-        sql_text += "gamma REAL, "
-        sql_text += "theta REAL, "
-        sql_text += "vega REAL, "
-        sql_text += "rho REAL, "
-        sql_text += "open_interest REAL "
+        sql_text += "( cur_bid REAL, "          # stock[0] = cur_bid
+        sql_text += "cur_ask REAL, "            # stock[1] = cur_ask
+        sql_text += "strike_price REAL, "       # stock[2] = strike_price
+        sql_text += "xdate REAL, "              # stock[3] = xdate
+        sql_text += "days_to_expir REAL, "      # stock[4] = days_to_expir
+        sql_text += "bid REAL, "                # stock[5] = bid
+        sql_text += "ask REAL, "                # stock[6] = ask
+        sql_text += "contract_size INT, "       # stock[7] = contract_size
+        sql_text += "put_call TEXT, "           # stock[8] = put_call
+        sql_text += "symbol TEXT, "             # stock[9] = symbol
+        sql_text += "imp_vol TEXT, "            # stock[10]= imp_vol
+        sql_text += "delta REAL, "              # stock[11]= delta
+        sql_text += "gamma REAL, "              # stock[12]= gamma
+        sql_text += "theta REAL, "              # stock[13]= theta
+        sql_text += "vega REAL, "               # stock[14]= vega
+        sql_text += "rho REAL, "                # stock[15]= rho
+        sql_text += "open_interest REAL "       # stock[16]= open_interest
         sql_text += ")"
         # print sql_text
         cur.execute(sql_text)
@@ -80,9 +81,9 @@ def add_trade( cur, _bid, _ask, _type, _profit, _option1, _option2, _option3, _o
     print sql_test
     cur.execute(sql_text)
 
-def find_profitable_trades( _cur, _data, _bid, _ask):
-    covered_call( _cur, _data, _bid, _ask )
-    iron_condor(  _cur, _data, _bid, _ask )
-    long_box(  _cur, _data, _bid, _ask )
-    short_box(  _cur, _data, _bid, _ask )
+def find_profitable_trades( _cur, _stock, _data, _bid, _ask):
+    covered_call( _cur, _stock, _data, _bid, _ask )
+    iron_condor(  _cur, _stock, _data, _bid, _ask )
+    long_box(  _cur, _stock, _data, _bid, _ask )
+    short_box(  _cur, _stock, _data, _bid, _ask )
 

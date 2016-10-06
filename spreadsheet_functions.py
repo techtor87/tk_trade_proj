@@ -243,9 +243,9 @@ def print_trades( _tradesheet, _bid, _ask, _type, _profit, *_opts ):
 
     return
 
-def find_profitable_trades( _tradesheet, _worksheet, _data, _bid, _ask):
-    covered_call( _tradesheet, _worksheet, _data, _bid, _ask )
-    iron_condor( _tradesheet, _worksheet, _data, _bid, _ask )
-    long_box( _tradesheet, _worksheet, _data, _bid, _ask )
-    short_box( _tradesheet, _worksheet, _data, _bid, _ask )
-    return
+# def find_profitable_trades( _tradesheet, _worksheet, _data, _bid, _ask):
+#     covered_call( _tradesheet, _worksheet, _data, _bid, _ask )
+#     iron_condor( _tradesheet, _worksheet, _data, _bid, _ask )
+#     long_box( _tradesheet, _worksheet, _data, _bid, _ask )
+#     short_box( _tradesheet, _worksheet, _data, _bid, _ask )
+#     return

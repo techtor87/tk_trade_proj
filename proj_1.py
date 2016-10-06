@@ -88,8 +88,8 @@ def main():
         cur.execute(sql_text)
         rows = cur.fetchall()
 
-        for row in rows:
-            print row
+        # for row in rows:
+            # print row
 
         con.commit()
         print( 'done {} - {}'.format(stock, time.time()))
