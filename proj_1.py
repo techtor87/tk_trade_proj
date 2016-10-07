@@ -62,6 +62,7 @@ def main():
 
     tk_func.refresh_account_data()
 
+    print( 'Start Time - {}'.format(time.time()))
     for stock in stock_list:
         tk_func.get_quote(stock)
         tk_func.get_search(stock)

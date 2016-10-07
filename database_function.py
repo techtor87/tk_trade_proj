@@ -82,8 +82,32 @@ def add_trade( cur, _bid, _ask, _type, _profit, _option1, _option2, _option3, _o
     cur.execute(sql_text)
 
 def find_profitable_trades( _cur, _stock, _data, _bid, _ask):
-    covered_call( _cur, _stock, _data, _bid, _ask )
-    iron_condor(  _cur, _stock, _data, _bid, _ask )
-    long_box(  _cur, _stock, _data, _bid, _ask )
-    short_box(  _cur, _stock, _data, _bid, _ask )
+    sql_text = "SELECT * FROM " + _stock + " WHERE put_call='put'AND contract_size=100 AND open_interest>50 ORDER BY xdate, strike_price LIMIT 20"
+    _cur.execute(sql_text)
+    data_rows_put = _cur.fetchall()
+
+    sql_text = "SELECT * FROM " + _stock + " WHERE put_call='call' AND contract_size=100 AND open_interest>50 ORDER BY xdate, strike_price"
+    _cur.execute(sql_text)
+    data_rows_call = _cur.fetchall()
+
+    start_time1 = time.time()
+    start_time2 = time.time()
+    # start_time3 = time.time()
+    for low_strike_p in data_rows_put:
+        for hi_strike_p in data_rows_put:
+            for low_strike_c in data_rows_call:
+                for hi_strike_c in data_rows_call:
+                    # covered_call( _cur, _stock, _data, _bid, _ask )
+                    # iron_condor(  _cur, _stock, _data, _bid, _ask )
+                    long_box( low_strike_c, hi_strike_c, low_strike_p, hi_strike_p )
+                    short_box( low_strike_c, hi_strike_c, low_strike_p, hi_strike_p )
+
+                # print 'inner loop done - {}'.format(time.time()-start_time3)
+                # start_time3 = time.time()
+
+        #     print 'middle loop done - {}'.format(time.time()-start_time2)
+        #     start_time2 = time.time()
+
+        # print 'outer loop done - {}'.format(time.time()-start_time1)
+        # start_time1 = time.time()
 

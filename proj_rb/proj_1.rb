@@ -25,7 +25,7 @@ data_store = Spreadsheet::Workbook.new
 
 $commision_flat_rate=4.95
 $commision_per_contract=0.65
-stock_array = [ "CSCO",
+stock_array = [ "CSCO"]
                 # "GE",
                 # "AAPL",
                 # "BP",
@@ -35,7 +35,7 @@ stock_array = [ "CSCO",
                 # "MSFT",
                 # "PG",
                 # "CRM",
-                "SPY"]
+                # "SPY"]
 
 # initialize each worksheet
 data_store.create_worksheet :name => "Trade List"

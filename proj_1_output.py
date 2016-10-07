@@ -38,8 +38,8 @@ def main_output():
 
     # trade_workbook.save("data_dump.xls")
 
-    sql_text = "SELECT * FROM AAPL"
-    sql_text += " LIMIT 10"
+    sql_text = "SELECT * FROM trades"
+    # sql_text += " LIMIT 10"
     cur.execute(sql_text)
     rows = cur.fetchall()
 
