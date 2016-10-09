@@ -78,20 +78,20 @@ def main():
                   tk_func.quote.bid,
                   tk_func.quote.ask)
 
-        find_profitable_trades( cur,
-                                stock,
-                                tk_func.search.search_quote,
-                                tk_func.quote.bid,
-                                tk_func.quote.ask )
+        # find_profitable_trades( cur,
+        #                         stock,
+        #                         tk_func.search.search_quote,
+        #                         tk_func.quote.bid,
+        #                         tk_func.quote.ask )
 
 
         sql_text = "SELECT * FROM " + stock
-        sql_text += " LIMIT 10"
+        sql_text += " LIMIT 1"
         cur.execute(sql_text)
         rows = cur.fetchall()
 
-        # for row in rows:
-            # print row
+        for row in rows:
+            print row
 
         con.commit()
         print( 'done {} - {}'.format(stock, time.time()))

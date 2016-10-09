@@ -60,4 +60,3 @@ def options_have_same_strikeprice( _opt1, _opt2, _opt3=None, _opt4=None ):
             same = False and same
     # print same,  _opt1[2], _opt2[2]
     return same
-
