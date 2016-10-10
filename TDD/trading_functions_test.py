@@ -1,7 +1,13 @@
 #!/usr/bin/env python
 
+import sys, os
+home_dir = os.path.expanduser('~')
+home_dir += '/workspace/tk_trade_proj'
+print home_dir
+sys.path.append(home_dir)
+
 import unittest
-from trading_functions_test import *
+from trading_functions import *
 
 class trading_functions_test_class(unittest.TestCase):
 
@@ -38,7 +44,4 @@ class trading_functions_test_class(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    import sys
-    sys.path.append('/home/ubuntu/workspace/tk_trade_proj')
-    print sys.path
     unittest.main()
