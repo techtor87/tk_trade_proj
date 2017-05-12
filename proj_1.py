@@ -38,7 +38,7 @@ stock_list = [ 'AAPL',
                # 'PG',
                'CRM' ]
 
-def main():
+def main(argv):
     tk_func = TK_functions()
 
     con = lite.connect('trade_test.db')
@@ -59,8 +59,12 @@ def main():
 
     # start_time=time.time()
     # while True:
+    print(len(argv))
+    if(len(argv)>2):
+        tk_func.refresh_account_data(argv[2])
+    else:
+        tk_func.refresh_account_data()
 
-    tk_func.refresh_account_data()
 
     print( 'Start Time - {}'.format(time.time()))
     for stock in stock_list:
@@ -72,26 +76,27 @@ def main():
         #         tk_func.quote.bid,
         #         tk_func.quote.ask )
 
+        print( 'get done {} - {}'.format(stock, time.time()))
         add_quote(cur,
                   stock,
                   tk_func.search.search_quote,
                   tk_func.quote.bid,
                   tk_func.quote.ask)
+        print( 'add_quote done {} - {}'.format(stock, time.time()))
+        find_profitable_trades( cur,
+                                stock,
+                                tk_func.search.search_quote,
+                                tk_func.quote.bid,
+                                tk_func.quote.ask )
 
-        # find_profitable_trades( cur,
-        #                         stock,
-        #                         tk_func.search.search_quote,
-        #                         tk_func.quote.bid,
-        #                         tk_func.quote.ask )
 
+        # sql_text = "SELECT * FROM " + stock
+        # sql_text += " LIMIT 1"
+        # cur.execute(sql_text)
+        # rows = cur.fetchall()
 
-        sql_text = "SELECT * FROM " + stock
-        sql_text += " LIMIT 1"
-        cur.execute(sql_text)
-        rows = cur.fetchall()
-
-        for row in rows:
-            print row
+        # for row in rows:
+        #     print row
 
         con.commit()
         print( 'done {} - {}'.format(stock, time.time()))
@@ -109,4 +114,5 @@ def main():
     # trade_workbook.save("data_dump.xls")
 
 if __name__ == '__main__':
-    main()
+    main(sys.argv)
+

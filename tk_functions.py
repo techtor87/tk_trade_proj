@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import sys
+import os.path
 import oauth2 as oauth
 import datetime
 
@@ -38,14 +39,22 @@ class TK_functions:
         self.oauth_client = oauth.Client( self.oauth_consumer, self.oauth_token )
 
 
-    def refresh_account_data(self):
-        response, data = self.oauth_client.request( self.SITE
-                                                    + self.MY_ACCOUNT
-                                                    + str(self.accountNum)
-                                                    + self.RETURN_TYPE_JSON )
+    def refresh_account_data(self, test_account_file=None):
+        if(test_account_file==None):
+            response, data = self.oauth_client.request( self.SITE
+                                                        + self.MY_ACCOUNT
+                                                        + str(self.accountNum)
+                                                        + self.RETURN_TYPE_JSON )
 
-        self.account.parse(data)
-        # print self.account.to_s()
+            self.account.parse(data)
+            # print self.account.to_s()
+        else:
+            print("test account data")
+            if(os.path.isfile(test_account_file)):
+                file = open(test_account_file,'r')
+                for line in file:
+                    split_val = line.split()
+                    self.account.value(split_val[0],split_val[2])
 
     def get_quote(self, symbol):
         response, data = self.oauth_client.request( self.SITE

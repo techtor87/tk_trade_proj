@@ -75,6 +75,71 @@ class Account():
        self.totalsecurities = parsed_data['response']['accountholdings']['totalsecurities']
        # print(json.dumps( parsed_data, indent=4))
 
+    def value(self, string, input_val):
+        if(string == 'account_num'):
+            self.account_num = input_val
+
+        if(string == 'accountval'):
+            self.accountval = input_val
+
+        if(string == 'fedcall'):
+            self.fedcall = input_val
+
+        if(string == 'housecall'):
+            self.housecall = input_val
+
+        if(string == 'accruedinterest'):
+            self.accruedinterest = input_val
+
+        if(string == 'cash'):
+            self.cash = input_val
+
+        if(string == 'cashavail'):
+            self.cashavail = input_val
+
+        if(string == 'marginbalance'):
+            self.marginbalance = input_val
+
+        if(string == 'mmf'):
+            self.mmf = input_val
+
+        if(string == 'total'):
+            self.total = input_val
+
+        if(string == 'uncleareddeposits'):
+            self.uncleareddeposits = input_val
+
+        if(string == 'unsettledfunds'):
+            self.unsettledfunds = input_val
+
+        if(string == 'account_yield'):
+            self.account_yield = input_val
+
+        if(string == 'longoptions'):
+            self.longoptions = input_val
+
+        if(string == 'longstocks'):
+            self.longstocks = input_val
+
+        if(string == 'options'):
+            self.options = input_val
+
+        if(string == 'shortoptions'):
+            self.shortoptions = input_val
+
+        if(string == 'shortstocks'):
+            self.shortstocks = input_val
+
+        if(string == 'stocks'):
+            self.stocks = input_val
+
+        if(string == 'total'):
+            self.total = input_val
+
+        if(string == 'totalsecurities'):
+            self.totalsecurities = input_val
+
+
 class Quote():
     def __init__(self):
         self.adp_100 = None

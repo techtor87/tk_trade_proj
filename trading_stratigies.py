@@ -12,9 +12,9 @@ def iron_condor_profit():
     return 0
 
 def long_box_profit( _low_strike_call, _high_strike_call, _low_strike_put, _high_strike_put):
-    bull_call_value = long_call_spread(_low_strike_call, _high_strike_call)
+    bull_call_value = spread_cost(_high_strike_call, _low_strike_call)
     print bull_call_value
-    bear_put_value = long_put_spread(_low_strike_put, _high_strike_put)
+    bear_put_value = spread_cost(_high_strike_put, _low_strike_put)
     print bear_put_value
     total_cost = bull_call_value + bear_put_value
     print total_cost
@@ -23,9 +23,9 @@ def long_box_profit( _low_strike_call, _high_strike_call, _low_strike_put, _high
     return total_value - total_cost - (commision_flat_rate - (commision_per_contract * 4))/100
 
 def short_box_profit( _low_strike_call, _high_strike_call, _low_strike_put, _high_strike_put):
-    bear_call_value = short_call_spread(_low_strike_call, _high_strike_call)
+    bear_call_value = spread_cost(_low_strike_call, _high_strike_call)
     print bull_call_value
-    bull_put_value = short_put_spread(_low_strike_put, _high_strike_put)
+    bull_put_value = spread_cost(_low_strike_put, _high_strike_put)
     print bear_put_value
     total_cost = bear_call_value + bull_put_value
     print total_cost

@@ -102,6 +102,7 @@ def find_profitable_trades( _cur, _stock, _data, _bid, _ask):
                     long_box( low_strike_c, hi_strike_c, low_strike_p, hi_strike_p )
                     short_box( low_strike_c, hi_strike_c, low_strike_p, hi_strike_p )
 
+
                 # print 'inner loop done - {}'.format(time.time()-start_time3)
                 # start_time3 = time.time()
 
